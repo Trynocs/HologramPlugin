@@ -6,7 +6,7 @@
 
     <groupId>com.trynocs</groupId>
     <artifactId>hologramplugin</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>hologramplugin</name>
