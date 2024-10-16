@@ -1,17 +1,16 @@
 package com.trynocs.hologramPlugin;
 
 import co.aikar.commands.PaperCommandManager;
+import com.trynocs.hologramPlugin.commands.Hologram;
 import com.trynocs.hologramPlugin.utils.ItemBuilder;
 import com.trynocs.hologramPlugin.utils.config.Configmanager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.sound.midi.Track;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,12 +37,15 @@ public final class main extends JavaPlugin {
         getLogger().info("██║░░░██║░░░");
         getLogger().info("╚═╝░░░╚═╝░░░");
         getLogger().info("");
-        getLogger().info("Plugin wird aktiviert...");
+        getLogger().info("Plugin starting...");
 
         plugin = this;
         configManager = new Configmanager(this);
         pluginManager = Bukkit.getPluginManager();
         commandManager = new PaperCommandManager(this);
+        configManager.saveDefaultConfig();
+        configManager.saveCustomConfig("holograms");
+        configManager.saveDefaultConfig();
 
         loadConfigValues();
         register();
@@ -56,17 +58,12 @@ public final class main extends JavaPlugin {
 
     public void register() {
         // Command & Event/Listener Registrierung
+        commandManager.registerCommand(new Hologram());
     }
 
     private void loadConfigValues() {
-        String prefix2 = configManager.getConfig().getString("messages.prefix", "&b&lItemTracker &8» &7");
-        String noperm2 = configManager.getConfig().getString("messages.no-perm", "Dazu hast du keine Rechte.");
-        String beplayer2 = configManager.getConfig().getString("messages.not-player", "Du musst ein Spieler sein, um diesen Command auszuführen.");
-        String noplayer2 = configManager.getConfig().getString("messages.no-player", "Dieser Spieler ist offline oder existiert nicht.");
+        String prefix2 = configManager.getConfig().getString("messages.prefix", "&b&lHologram &8» &7");
         prefix = ChatColor.translateAlternateColorCodes('&', prefix2);
-        noperm = main.prefix + ChatColor.translateAlternateColorCodes('&', noperm2);
-        beplayer = main.prefix + ChatColor.translateAlternateColorCodes('&', beplayer2);
-        noplayer = main.prefix + ChatColor.translateAlternateColorCodes('&', noplayer2);
     }
 
     public static main getPlugin() {
