@@ -1,0 +1,8 @@
+name: HologramPlugin
+version: '0.1'
+main: com.trynocs.hologramPlugin.main
+api-version: '1.20'
+prefix: HOLO
+authors: [ Trynocs ]
+description: Display holograms with only 1 command
+website: www.trynocs.com

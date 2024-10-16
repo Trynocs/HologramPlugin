@@ -1,0 +1,7 @@
+mode:
+  debug: false
+messages:
+  prefix: "&b&lHologram &8» &7"
+  no-perm: "You do not have permission for that."
+  not-player: "You must be a player to execute this command."
+  no-player: "This player is offline or does not exist."
