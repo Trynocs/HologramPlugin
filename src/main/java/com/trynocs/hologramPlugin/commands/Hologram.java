@@ -38,7 +38,7 @@ public class Hologram extends BaseCommand {
             armorStand.setVisible(false);
             armorStand.setRemoveWhenFarAway(false);
             armorStand.setGravity(false);
-            armorStand.setCustomName(name);
+            armorStand.setCustomName(name.replace("{newline}", "\n"));
             armorStand.setCustomNameVisible(true);
 
             // Set metadata to identify the armor stand with the hologram ID
@@ -74,7 +74,7 @@ public class Hologram extends BaseCommand {
                                 for (MetadataValue metadataValue : armorStand.getMetadata("hologramID")) {
                                     if (metadataValue.asString().equals(id)) {
                                         armorStand.remove();
-                                        sender.sendMessage(main.prefix + "§aHologram '" + holoName + "' (ID: " + id + ") has been removed.");
+                                        sender.sendMessage(main.prefix + "§aHologram '" + holoName + "§a' (ID: " + id + ") has been removed.");
                                         found = true;
                                         break;
                                     }
@@ -92,7 +92,7 @@ public class Hologram extends BaseCommand {
                 }
             }
 
-            if (!found) sender.sendMessage(main.prefix + "§cHologram with name or ID '" + nameOrId + "' not found.");
+            if (!found) sender.sendMessage(main.prefix + "§cHologram with name or ID '" + nameOrId + "§c' not found.");
         } else sender.sendMessage(main.prefix + "§cOnly players can execute this command.");
     }
 
@@ -106,7 +106,7 @@ public class Hologram extends BaseCommand {
             }
 
             String nameOrId = main.translateColors(args[0]);
-            String newName = main.translateColors(String.join(" ", Arrays.copyOfRange(args, 1, args.length)));
+            String newName = main.translateColors(String.join(" ", Arrays.copyOfRange(args, 1, args.length)).replace("{newline}", "\n"));
 
             FileConfiguration config = configmanager.getCustomConfig("holograms");
             boolean found = false;
@@ -122,7 +122,7 @@ public class Hologram extends BaseCommand {
                                 for (MetadataValue metadataValue : armorStand.getMetadata("hologramID")) {
                                     if (metadataValue.asString().equals(id)) {
                                         armorStand.setCustomName(newName);  // Set the new name
-                                        sender.sendMessage(main.prefix + "§aHologram '" + holoName + "' (ID: " + id + ") has been renamed to '" + newName + "§a'.");
+                                        sender.sendMessage(main.prefix + "§aHologram '" + holoName + "§a' (ID: " + id + ") has been renamed to '" + newName + "§a'.");
                                         found = true;
                                         break;
                                     }
@@ -139,7 +139,7 @@ public class Hologram extends BaseCommand {
                 }
             }
 
-            if (!found) sender.sendMessage(main.prefix + "§cHologram with name or ID '" + nameOrId + "' not found.");
+            if (!found) sender.sendMessage(main.prefix + "§cHologram with name or ID '" + nameOrId + "§c' not found.");
         } else {
             sender.sendMessage(main.prefix + "§cOnly players can execute this command.");
         }
